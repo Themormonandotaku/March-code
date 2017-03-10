@@ -5,15 +5,11 @@
 #include <cstdlib>
 using namespace std;
 int main() {
+	int health = 100;
 	string input;
 	string inventory[5];
 	for (int i = 0; i < 5; i++)
 		inventory[i] = "";
-	int Ghost() {
-		int num = rand() % 100 + 1;
-		if (num < 70)
-			cout << "A ghost suddenly appears!" << endl;
-		else if (num > 70 && num <=30)
 	char inpu = 'a';//dummy value
 	int room = 1; //starting room is 1
 	while (inpu != 'q') {//game loop
@@ -54,7 +50,7 @@ int main() {
 	
 		case 3:
 			cout << "As you open the door, you examine the room you are in currently." << endl;
-			cout << "It's small, with a rug, a chair, and a coffee table. Wherever house you are in, it looks like it hasn't been inhabited for a long time." << endl;
+			cout << "It's small, with a rug, a chair, and a coffee table. Whereever house you are in, it looks like it hasn't been inhabited for a long time." << endl;
 			cout << "There's a drawer, but it's locked." << endl;
 			cout << "Leave?" << endl;
 
@@ -163,3 +159,10 @@ int main() {
 	}//end game loop
 	cout << "Thanks for playing!" << endl;
 }//end main (game is done)
+void Ghost() {
+	int num = rand() % 100 + 1;
+	if (num < 70)
+		cout << "A ghost suddenly appears!" << endl;
+	else if (num > 70 && num = 30)
+		cout << "You hear a voice, but as you turn around, nothing's there. You keep going." << endl;
+}
