@@ -29,8 +29,8 @@ int main() {
 			cout << endl << endl;
 			system("pause");
 
-			cin >> input;
-			if (input == "Go south")
+			getline(cin, input);
+			if (input.compare ("go south")==0)
 				room = 2;
 			break;
 		
@@ -40,12 +40,13 @@ int main() {
 			cout << "You immediately try opening it, but it's locked. Upon closer inspection, you see that the handle has a keyhole with a strange purple marked handle." << endl;
 			cout << "You decide to go up the stairs. When you reach the upper stairs, there's a pair of doors. One to your left, and one to your right." << endl;
 			cout << "Your call." << endl;
+			system("pause");
 
-			cin >> input;
-			if (input == "Go left")
-				room == 3;
-			if (input == "Go right")
-				room == 4;
+			getline(cin, input);
+			if (input.compare ("go left")==0)
+				room = 3;
+			else if (input.compare ("go right")==0)
+				room = 4;
 			break;
 	
 		case 3:
@@ -54,11 +55,11 @@ int main() {
 			cout << "There's a drawer, but it's locked." << endl;
 			cout << "Leave?" << endl;
 
-			cin >> input;
-			if (input == "Leave")
-				room == 5;
-			if (input == "Break drawer")
-				room == 111;
+			getline(cin, input);
+			if (input.compare ("Leave")==0)
+				room = 5;
+			if (input.compare ("Break drawer")==0)
+				room = 111;
 			break;
 	
 		case 111:
@@ -72,7 +73,7 @@ int main() {
 			cout << endl << endl;
 			system("pause");
 
-			cin >> input;
+			getline(cin, input);
 			if (input == "Leave")
 				room = 5;
 	
@@ -81,11 +82,11 @@ int main() {
 			cout << "Inside the room, there's candles on the floor. As you take a closer look, it's in a shape of a black magic circle. Inside the circle is a doll shaped as a little girl." << endl;
 			cout << "For some reason, this room makes you feel uneasy. Your guts says to leave." << endl;
 
-			cin >> input;
+			getline(cin, input);
 			if (input == "Leave")
-				room == 5;
+				room = 5;
 			if (input == "Pick up doll")
-				room == 6;
+				room = 6;
 			break;
 	
 		case 6:
@@ -96,19 +97,19 @@ int main() {
 			cout << endl << endl;
 			system("pause");
 			
-			cin >> input;
+			getline(cin, input);
 			if (input == "Leave")
-				room == 5;
+				room = 5;
 	
 		case 5:
 			cout << "You're back in the hallway. You still don't have the key to the door. However, you think back to the first room. You never really bothered to check it." << endl;
 			cout << "Go to the other hallway door, or go back to the first room?" << endl;
 
-			cin >> input;
+			getline(cin, input);
 			if (input == "Go to first room")
-				room == 7;
+				room = 7;
 			if (input == "Go forward")
-				room == 4;
+				room = 4;
 			break;
 		
 		case 7:
@@ -117,11 +118,11 @@ int main() {
 			cout << "As you turn around, a circle of light suddenly appears in the room. You then hear something scream: MAKE AN OFFERING!!!!" << endl;
 			cout << "You're panicking. What do you do?" << endl;
 
-			cin >> input;
+			getline(cin, input);
 			if (input == "Offer creepy doll")
-				room == 8;
+				room = 8;
 			else
-				room == 9;
+				room = 9;
 			break;
 	
 		case 9:
@@ -129,7 +130,7 @@ int main() {
 			cout << "Suddenly you feel your insides tearing out. You scream, until nothing's left of you." << endl;
 			cout << "You die in someplace you never knew about, with your loved ones never knowing what happened to you." << endl;
 			cout << "Bad end. Hint: Check to see if there was anything you could've gotten from one of the hallway rooms." << endl;
-			cin >> input;
+			getline(cin, input);
 			input = 'q';
 			break;
 	
@@ -143,9 +144,9 @@ int main() {
 			cout << endl << endl;
 			system("pause");
 
-			cin >> input;
+			getline(cin, input);
 			if (input == "Unlock door")
-				room == 10;
+				room = 10;
 			break;
 	
 		case 10:
@@ -161,8 +162,8 @@ int main() {
 }//end main (game is done)
 void Ghost() {
 	int num = rand() % 100 + 1;
-	if (num < 70)
+	if (num > 70)
 		cout << "A ghost suddenly appears!" << endl;
-	else if (num > 70 && num = 30)
+	else if (num < 70)
 		cout << "You hear a voice, but as you turn around, nothing's there. You keep going." << endl;
 }
