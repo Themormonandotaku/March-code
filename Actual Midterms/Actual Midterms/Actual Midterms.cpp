@@ -6,16 +6,17 @@
 #include <windows.h>
 #include <cstdlib>
 using namespace std;
+void Ghost();
+int health = 100;
 int main() {
 	system("Color 79");
-	int health = 100;
 	string input;
 	string inventory[5];
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 7; i++)
 		inventory[i] = "";
 	char inpu = 'a';//dummy value
 	int room = 0; //starting room is 1
-	while (inpu != 'q') {//game loop
+	while (inpu != 'q' && health > 0) {//game loop
 		switch (room) {
 		case 0:
 			srand(time(NULL));
@@ -48,6 +49,7 @@ int main() {
 			break;
 		
 		case 2:
+			Ghost();
 			cout << "As you open the door, you step into the foyer. The first thing that catches your eye is the big, rusty chandelier hanging from the ceiling." << endl;
 			cout << "As you look around, you notice a large pair of doors directly across from you. There are also 2 set of staircases, leading up." << endl;
 			cout << "You immediately try opening it, but it's locked. Upon closer inspection, you see that the handle has a keyhole with a strange purple marked handle." << endl;
@@ -64,6 +66,7 @@ int main() {
 			break;
 	
 		case 3:
+			Ghost();
 			cout << "As you open the door, you examine the room you are in currently." << endl;
 			cout << "It's small, with a rug, a chair, and a coffee table. Whereever house you are in, it looks like it hasn't been inhabited for a long time." << endl;
 			cout << "There's a drawer, but it's locked." << endl;
@@ -93,6 +96,7 @@ int main() {
 				room = 5;
 	
 		case 4:
+			Ghost();
 			cout << "As you open the door, you take in the room." << endl;
 			cout << "Inside the room, there's candles on the floor. As you take a closer look, it's in a shape of a black magic circle. Inside the circle is a doll shaped as a little girl." << endl;
 			cout << "For some reason, this room makes you feel uneasy. Your guts says to leave." << endl;
@@ -133,7 +137,7 @@ int main() {
 			cout << "You're panicking. What do you do?" << endl;
 			cout << endl << endl;
 			getline(cin, input);
-			if (input == "offer creepy doll")
+			if (inventory[2].compare("creepy doll") == 0)
 				room = 9;
 			else
 				room = 8;
@@ -188,8 +192,12 @@ int main() {
 }//end main (game is done)
 void Ghost() {
 	int num = rand() % 100 + 1;
-	if (num > 70)
+	if (num > 70) {
+		health = health - 30;
 		cout << "A ghost suddenly appears!" << endl;
+		cout << "It attacks you. You quickly wave the talism, and it dissapears." << endl;
+		cout << "However, your head starts to hurt. Be careful not to pass out." << endl;
+	}
 	else if (num < 70)
 		cout << "You hear a voice, but as you turn around, nothing's there. You keep going." << endl;
 }
