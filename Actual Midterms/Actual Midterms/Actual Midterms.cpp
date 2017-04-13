@@ -7,11 +7,12 @@
 #include <cstdlib>
 using namespace std;
 void Ghost();
+void Medicine();
 int health = 100;
 int main() {
 	system("Color 79");
 	string input;
-	string inventory[5];
+	string inventory[6];
 	for (int i = 0; i < 7; i++)
 		inventory[i] = "";
 	char inpu = 'a';//dummy value
@@ -50,6 +51,7 @@ int main() {
 		
 		case 2:
 			Ghost();
+			Medicine();
 			cout << "As you open the door, you step into the foyer. The first thing that catches your eye is the big, rusty chandelier hanging from the ceiling." << endl;
 			cout << "As you look around, you notice a large pair of doors directly across from you. There are also 2 set of staircases, leading up." << endl;
 			cout << "You immediately try opening it, but it's locked. Upon closer inspection, you see that the handle has a keyhole with a strange purple marked handle." << endl;
@@ -67,6 +69,7 @@ int main() {
 	
 		case 3:
 			Ghost();
+			Medicine();
 			cout << "As you open the door, you examine the room you are in currently." << endl;
 			cout << "It's small, with a rug, a chair, and a coffee table. Whereever house you are in, it looks like it hasn't been inhabited for a long time." << endl;
 			cout << "There's a drawer, but it's locked." << endl;
@@ -75,12 +78,27 @@ int main() {
 			getline(cin, input);
 			if (input.compare ("leave")==0)
 				room = 5;
-			if (input.compare ("use key")==0)
-				room = 111;
+			if (input.compare("search") == 0)
+				room = 12;
+			if (inventory[6].compare("key") == 0)
+				room = 11;
 			break;
-	
-		case 111:
-			cout << "You try the dusty old key, and the drawer opens!" << endl;
+
+		case 12:
+			cout << "As you look around, you notice a drawer in the coffee table. As you open it, you find a key." << endl;
+			cout << "It doesn't have the pattern on the door, so you guess it might not open. You take it anyways." << endl;
+			cout << endl << endl;
+			cout << "You got the key!" << endl;
+			inventory[6] = "key";
+			cout << endl << endl;
+			getline(cin, input);
+			if (input.compare("leave") == 0)
+				room = 5;
+			break;
+
+		case 11:
+			Medicine();
+			cout << "You try the key, and the drawer opens!" << endl;
 			cout << "As you look inside the drawer you find...." << endl;
 			cout << "A picture of something gory. It looks like a dead person on the ground, with a girl standing over it, completley drenched in blood." << endl;
 			cout << "You can't make out the figure's face. However, you flip the photo around, and see words written in blood: MUST HAVE REVENGE FOR THE GIRL WHO BETRAYED ME!!!!" << endl;
@@ -94,9 +112,11 @@ int main() {
 			getline(cin, input);
 			if (input == "leave")
 				room = 5;
+			break;
 	
 		case 4:
 			Ghost();
+			Medicine();
 			cout << "As you open the door, you take in the room." << endl;
 			cout << "Inside the room, there's candles on the floor. As you take a closer look, it's in a shape of a black magic circle. Inside the circle is a doll shaped as a little girl." << endl;
 			cout << "For some reason, this room makes you feel uneasy. Your guts says to leave." << endl;
@@ -109,6 +129,7 @@ int main() {
 			break;
 	
 		case 6:
+			Medicine();
 			cout << "As much as it creeped you out, you felt as if the doll had a significant presence. You pick it up, and suddenly, the lights go out." << endl;
 			cout << "This time, you are convinced to leave." << endl;
 			cout << "You got the creepy doll! Yaaaaay....." << endl;
@@ -120,6 +141,7 @@ int main() {
 				room = 5;
 	
 		case 5:
+			Medicine();
 			cout << "You're back in the hallway. You still don't have the key to the door. However, you think back to the first room. You never really bothered to check it." << endl;
 			cout << "Go to the other hallway door, or go back to the first room?" << endl;
 			cout << endl << endl;
@@ -193,11 +215,17 @@ int main() {
 void Ghost() {
 	int num = rand() % 100 + 1;
 	if (num > 70) {
-		health = health - 30;
+		health = health - 40;
 		cout << "A ghost suddenly appears!" << endl;
 		cout << "It attacks you. You quickly wave the talism, and it dissapears." << endl;
-		cout << "However, your head starts to hurt. Be careful not to pass out." << endl;
+		cout << "However, your head starts to hurt. Your life fades a bit." << endl;
+		cout << "Do be careful not to die." << endl;
 	}
 	else if (num < 70)
 		cout << "You hear a voice, but as you turn around, nothing's there. You keep going." << endl;
+}
+void Medicine() {
+	health = health + 5;
+	cout << "You clutch the talism, and you feel comfort. More health!" << endl;
+	cout << endl << endl;
 }
